@@ -1,6 +1,6 @@
+import 'package:cek_in/utils/routing/router.dart';
+import 'package:cek_in/utils/routing/routes.dart';
 import 'package:flutter/material.dart';
-
-import 'pages/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -9,7 +9,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CekIn',
-      home: const MyHomePage(),
+      onGenerateRoute: AppRouter.i.onGenerateRoute,
+      initialRoute: Routes.init,
     );
   }
 }

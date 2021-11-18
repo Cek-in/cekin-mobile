@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../pages/error_page.dart';
-import '../../pages/home/home_page.dart';
 import '../logger.dart';
 import 'pages.dart';
 import 'routes.dart';
@@ -17,7 +16,10 @@ class AppRouter {
     switch (settings.name) {
       case Routes.home:
         _logger.info('Routing to home page');
-        return route<MyHomePage>(Pages.homePage());
+        return route(Pages.homePage());
+      case Routes.init:
+        _logger.info('Routing to init page');
+        return route(Pages.initPage());
       default:
         _logger.warn('Invalid route given');
         return MaterialPageRoute(builder: (c) => const ErrorPage());
@@ -29,7 +31,7 @@ class AppRouter {
         .pushNamedAndRemoveUntil(Routes.error, (Route<dynamic> route) => false);
   }
 
-  MaterialPageRoute route<T>(T page) {
-    return MaterialPageRoute(builder: (context) => page as Widget);
+  MaterialPageRoute route(page) {
+    return MaterialPageRoute(builder: (context) => page);
   }
 }
