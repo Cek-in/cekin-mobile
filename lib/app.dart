@@ -1,6 +1,7 @@
-import 'package:cek_in/utils/routing/router.dart';
-import 'package:cek_in/utils/routing/routes.dart';
 import 'package:flutter/material.dart';
+
+import 'utils/routing/router.dart';
+import 'utils/routing/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
