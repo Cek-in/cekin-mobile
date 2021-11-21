@@ -1,7 +1,7 @@
 import '../utils/preferences.dart';
-import 'localisations/cs.dart';
-import 'localisations/en.dart';
-import 'strings_abstracts.dart';
+import 'abstracts/strings.dart';
+import 'localisations/cs/cs.dart';
+import 'localisations/en/en.dart';
 
 class StringsProvider {
   static StringsProvider i = StringsProvider._();
