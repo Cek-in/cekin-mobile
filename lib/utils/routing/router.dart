@@ -15,11 +15,13 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.home:
-        _logger.info('Routing to home page');
         return route(Pages.homePage());
       case Routes.init:
-        _logger.info('Routing to init page');
         return route(Pages.initPage());
+      case Routes.login:
+        return route(Pages.loginPage());
+      case Routes.error:
+        return MaterialPageRoute(builder: (c) => const ErrorPage());
       default:
         _logger.warn('Invalid route given');
         return MaterialPageRoute(builder: (c) => const ErrorPage());
