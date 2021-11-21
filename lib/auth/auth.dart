@@ -55,6 +55,10 @@ class Auth {
       result: LoginResults.fail,
     );
   }
+
+  Future<void> logout() async {
+    await _auth.signOut();
+  }
 }
 
 enum LoginResults {

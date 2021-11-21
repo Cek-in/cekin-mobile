@@ -1,7 +1,11 @@
+import 'package:cek_in/auth/auth.dart';
+import 'package:cek_in/pages/home/home_bloc.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final HomePageBloc bloc;
+
+  const HomePage(this.bloc, {Key? key}) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -12,6 +16,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        leading: IconButton(
+          icon: Icon(Icons.exit_to_app),
+          onPressed: () {
+            Auth.i.logout();
+          },
+        ),
       ),
       body: Center(
         child: Column(
