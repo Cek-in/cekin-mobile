@@ -5,4 +5,7 @@ class StringsCs implements CekInStrings {
   GeneralStringsMixin get general => GeneralStringsCs();
 }
 
-class GeneralStringsCs with GeneralStringsMixin {}
+class GeneralStringsCs with GeneralStringsMixin {
+  @override
+  String get appName => 'ČekIn';
+}

@@ -5,4 +5,7 @@ class StringsEn implements CekInStrings {
   GeneralStringsMixin get general => GeneralStringsEn();
 }
 
-class GeneralStringsEn with GeneralStringsMixin {}
+class GeneralStringsEn with GeneralStringsMixin {
+  @override
+  String get appName => 'CekIn';
+}

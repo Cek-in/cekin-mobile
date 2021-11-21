@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'strings/strings_provider.dart';
 import 'utils/routing/router.dart';
 import 'utils/routing/routes.dart';
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CekIn',
+      title: StringsProvider.i.strings.general.appName,
       onGenerateRoute: AppRouter.i.onGenerateRoute,
       initialRoute: Routes.init,
     );
