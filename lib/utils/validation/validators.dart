@@ -1,4 +1,4 @@
-import '../../strings/abstracts/validator_strings.dart';
+import '../../strings/abstracts/validator.dart';
 import '../../strings/strings_provider.dart';
 import 'email_string_extension.dart';
 
@@ -22,6 +22,17 @@ class Validators {
         }
         if (!value.isValidEmail()) {
           return _s.emailInvalid;
+        }
+        return null;
+      };
+
+  static TextValidator get strongPassword => (value) {
+        value = value?.trim();
+        if (value == null || value.isEmpty) {
+          return _s.empty;
+        }
+        if (!value.isStrongPassword()) {
+          return _s.passwordNotStrongEnough;
         }
         return null;
       };

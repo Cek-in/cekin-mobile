@@ -1,4 +1,4 @@
-import '../../abstracts/validator_strings.dart';
+import '../../abstracts/validator.dart';
 
 class ValidatorStringsCs with ValidatorStringsMixin {
   @override
@@ -6,4 +6,7 @@ class ValidatorStringsCs with ValidatorStringsMixin {
 
   @override
   String get emailInvalid => 'Toto není validní emailová adresa';
+
+  @override
+  String get passwordNotStrongEnough => 'Příliš slabé heslo';
 }

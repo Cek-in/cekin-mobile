@@ -1,4 +1,4 @@
-import '../../abstracts/validator_strings.dart';
+import '../../abstracts/validator.dart';
 
 class ValidatorStringsEn with ValidatorStringsMixin {
   @override
@@ -6,4 +6,7 @@ class ValidatorStringsEn with ValidatorStringsMixin {
 
   @override
   String get emailInvalid => 'Invalid email format';
+
+  @override
+  String get passwordNotStrongEnough => 'Password is too weak';
 }

@@ -137,7 +137,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildSignUp() {
     return PlainButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(Routes.signUp);
+      },
       label: s.signUpButton,
     );
   }
