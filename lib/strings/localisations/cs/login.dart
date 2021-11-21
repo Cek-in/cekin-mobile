@@ -16,4 +16,16 @@ class LoginStringsCs with LoginStringsMixin {
 
   @override
   String get failureMessage => 'Něco se nezdařilo, zkuste to znovu později';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get passwordLabel => 'Heslo';
+
+  @override
+  String get forgotPasswordButton => 'Zapomenuté heslo';
+
+  @override
+  String get signUpButton => 'Registrovat';
 }

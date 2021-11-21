@@ -8,4 +8,12 @@ mixin LoginStringsMixin {
   String get continueDialogButton;
 
   String get failureMessage;
+
+  String get emailLabel;
+
+  String get passwordLabel;
+
+  String get forgotPasswordButton;
+
+  String get signUpButton;
 }

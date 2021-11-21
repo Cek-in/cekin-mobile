@@ -20,6 +20,10 @@ class AppRouter {
         return route(Pages.initPage());
       case Routes.login:
         return route(Pages.loginPage());
+      case Routes.signUp:
+        return route(Pages.signUpPage());
+      case Routes.forgotPassword:
+        return route(Pages.forgotPasswordPage());
       case Routes.error:
         return MaterialPageRoute(builder: (c) => const ErrorPage());
       default:

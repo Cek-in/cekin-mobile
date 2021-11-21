@@ -7,13 +7,25 @@ class CekInTextFormField extends StatelessWidget {
   final TextValidator? validator;
   final TextInputType? keyboardType;
   final bool obscureText;
+  final FocusNode? focusNode;
+  final Function(String)? onFieldSubmitted;
+  final TextInputAction? textInputAction;
+  final List<String>? autofillHints;
+  final String? label;
+  final Widget? suffix;
 
   const CekInTextFormField({
     Key? key,
     required this.controller,
+    this.obscureText = false,
+    this.focusNode,
+    this.onFieldSubmitted,
+    this.textInputAction,
     this.validator,
     this.keyboardType,
-    this.obscureText = false,
+    this.autofillHints,
+    this.label,
+    this.suffix,
   }) : super(key: key);
 
   @override
@@ -23,6 +35,14 @@ class CekInTextFormField extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType,
       obscureText: obscureText,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
+      focusNode: focusNode,
+      autofillHints: autofillHints,
+      decoration: InputDecoration(
+        label: label != null ? Text(label!) : null,
+        suffixIcon: suffix,
+      ),
     );
   }
 }

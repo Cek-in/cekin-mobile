@@ -15,4 +15,16 @@ class LoginStringsEn with LoginStringsMixin {
 
   @override
   String get failureMessage => 'Something went wrong, please try again later';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get passwordLabel => 'Password';
+
+  @override
+  String get forgotPasswordButton => 'Forgot password';
+
+  @override
+  String get signUpButton => 'Sign up';
 }

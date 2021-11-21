@@ -1,3 +1,4 @@
+import 'package:cek_in/ui/buttons/text_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../strings/strings_provider.dart';
@@ -31,6 +32,9 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  final passwordNode = FocusNode();
+  bool obscurePassword = true;
+
   @override
   void initState() {
     setListeners();
@@ -58,24 +62,25 @@ class _LoginPageState extends State<LoginPage> {
     return FlexibleView(
       child: LoadingOverlay(
         isLoading: widget.bloc.loadingStream,
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              ...buildForm(),
-              buildSubmit(),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                buildEmailField(),
+                buildPasswordField(),
+                buildForgotPassword(),
+                SizedBox(height: 20),
+                buildSubmit(),
+                SizedBox(height: 5),
+                buildSignUp(),
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  List<Widget> buildForm() {
-    return [
-      buildEmailField(),
-      buildPasswordField(),
-    ];
   }
 
   Widget buildEmailField() {
@@ -83,6 +88,14 @@ class _LoginPageState extends State<LoginPage> {
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       validator: Validators.email,
+      textInputAction: TextInputAction.next,
+      label: s.emailLabel,
+      autofillHints: const [
+        AutofillHints.email,
+      ],
+      onFieldSubmitted: (_) {
+        passwordNode.requestFocus();
+      },
     );
   }
 
@@ -90,8 +103,42 @@ class _LoginPageState extends State<LoginPage> {
     return CekInTextFormField(
       controller: passwordController,
       keyboardType: TextInputType.text,
-      obscureText: true,
+      obscureText: obscurePassword,
       validator: Validators.empty,
+      textInputAction: TextInputAction.done,
+      label: s.passwordLabel,
+      suffix: IconButton(
+        icon: Icon(
+            obscurePassword ? Icons.visibility : Icons.visibility_off_rounded),
+        onPressed: () {
+          setState(() {
+            obscurePassword = !obscurePassword;
+          });
+        },
+      ),
+      autofillHints: const [
+        AutofillHints.password,
+      ],
+      onFieldSubmitted: (_) {
+        submit();
+      },
+    );
+  }
+
+  Widget buildForgotPassword() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: PlainButton(
+        onPressed: () {},
+        label: s.forgotPasswordButton,
+      ),
+    );
+  }
+
+  Widget buildSignUp() {
+    return PlainButton(
+      onPressed: () {},
+      label: s.signUpButton,
     );
   }
 
