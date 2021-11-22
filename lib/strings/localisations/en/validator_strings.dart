@@ -9,4 +9,7 @@ class ValidatorStringsEn with ValidatorStringsMixin {
 
   @override
   String get passwordNotStrongEnough => 'Password is too weak';
+
+  @override
+  String get notMatchingValue => 'Values are not same';
 }

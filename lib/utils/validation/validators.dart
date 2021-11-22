@@ -36,4 +36,15 @@ class Validators {
         }
         return null;
       };
+
+  static String? Function(String?, String?) get matchValue =>
+      (String? value, String? match) {
+        if (value == null || value.isEmpty) {
+          return _s.empty;
+        }
+        if (value != match) {
+          return _s.notMatchingValue;
+        }
+        return null;
+      };
 }

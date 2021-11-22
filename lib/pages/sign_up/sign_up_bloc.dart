@@ -7,4 +7,10 @@ class SignUpBloc {
   SignUpBloc();
 
   Stream<bool> get isLoadingStream => _isLoadingController.stream;
+
+  Future<String?> submit(String email, String password) async {
+    _isLoadingController.add(true);
+
+    _isLoadingController.add(false);
+  }
 }

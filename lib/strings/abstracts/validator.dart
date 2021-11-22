@@ -4,4 +4,6 @@ mixin ValidatorStringsMixin {
   String get emailInvalid;
 
   String get passwordNotStrongEnough;
+
+  String get notMatchingValue;
 }

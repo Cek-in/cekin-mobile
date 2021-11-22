@@ -9,4 +9,10 @@ class SignUpStringsCs with SignUpStringsMixin {
 
   @override
   String get passwordLabel => 'Heslo';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get continueDialogButton => 'Pokračovat';
 }

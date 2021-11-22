@@ -9,4 +9,7 @@ class ValidatorStringsCs with ValidatorStringsMixin {
 
   @override
   String get passwordNotStrongEnough => 'Příliš slabé heslo';
+
+  @override
+  String get notMatchingValue => 'Zadané hodnoty se neshodují';
 }
