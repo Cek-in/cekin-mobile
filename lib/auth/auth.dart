@@ -56,6 +56,28 @@ class Auth {
     );
   }
 
+  Future<ActionResult<SignUpResults, void>> register(
+      String email, String password) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return ActionResult(result: SignUpResults.success);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        Log.i.warn('Firebase signUp returned weak password');
+        return ActionResult(result: SignUpResults.weakPassword);
+      } else if (e.code == 'email-already-in-use') {
+        Log.i.warn('Firebase signUp returned user already exists');
+        return ActionResult(result: SignUpResults.userExists);
+      } else {
+        Log.i.error('SignUp failed: ${e.toString()}');
+      }
+    } catch (e) {
+      Log.i.error('SignUp failed: ${e.toString()}');
+    }
+    return ActionResult(result: SignUpResults.fail);
+  }
+
   Future<void> logout() async {
     await _auth.signOut();
   }
@@ -68,5 +90,12 @@ class Auth {
 enum LoginResults {
   success,
   incorrectCredentials,
+  fail,
+}
+
+enum SignUpResults {
+  success,
+  weakPassword,
+  userExists,
   fail,
 }

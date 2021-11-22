@@ -81,50 +81,52 @@ class Dialogs {
             return false;
           },
           child: Dialog(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (title != null) ...[
-                  Text(
-                    title.toUpperCase(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-                if (message != null) ...[
-                  Text(
-                    message,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: PrimaryButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          onContinue?.call();
-                        },
-                        text: continueButton,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (title != null) ...[
+                    Text(
+                      title.toUpperCase(),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                   ],
-                ),
-              ],
+                  if (message != null) ...[
+                    Text(
+                      message,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: PrimaryButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            onContinue?.call();
+                          },
+                          text: continueButton,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

@@ -15,7 +15,7 @@ class GQLProvider {
     await initHiveForFlutter();
     final HttpLink httpLink = HttpLink(api);
     final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer <${await Auth.i.getToken()}>',
+      getToken: () async => 'Bearer ${await Auth.i.getToken()}',
     );
     final Link link = authLink.concat(httpLink);
     client = ValueNotifier(
