@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app.dart';
 import 'auth/auth.dart';
+import 'external/graphql_provider.dart';
 import 'utils/preferences.dart';
 import 'utils/themes/theme_manager.dart';
 
@@ -15,6 +16,7 @@ void main() async {
   await Preferences.i.init();
   await ThemeManager.i.init();
   await Auth.i.init();
+  await GQLProvider.i.init();
 
   runApp(const MyApp());
 }

@@ -59,6 +59,10 @@ class Auth {
   Future<void> logout() async {
     await _auth.signOut();
   }
+
+  Future<String> getToken() async {
+    return await _auth.currentUser?.getIdToken() ?? '';
+  }
 }
 
 enum LoginResults {
