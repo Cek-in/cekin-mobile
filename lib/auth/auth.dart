@@ -85,6 +85,14 @@ class Auth {
   Future<String> getToken() async {
     return await _auth.currentUser?.getIdToken() ?? '';
   }
+
+  Future<void> unregisterUser() async {
+    try {
+      await _auth.currentUser!.delete();
+    } catch (e) {
+      Log.i.error('Failed to unregister user: $e');
+    }
+  }
 }
 
 enum LoginResults {

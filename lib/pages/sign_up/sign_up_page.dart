@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../strings/strings_provider.dart';
+import '../../ui/buttons/primary_button.dart';
 import '../../ui/dialogs.dart';
 import '../../ui/flexible_view.dart';
 import '../../ui/form/text_form_field.dart';
@@ -83,6 +84,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 buildEmailField(),
                 buildPasswordField(),
                 buildConfirmPasswordField(),
+                SizedBox(height: 20),
+                PrimaryButton(
+                  text: s.btSubmit,
+                  onPressed: submit,
+                ),
               ],
             ),
           ),
@@ -169,7 +175,14 @@ class _SignUpPageState extends State<SignUpPage> {
     if (formKey.currentState!.validate()) {
       final res = await widget.bloc.submit(email, password, fName, lName);
       if (res == null) {
-        await Navigator.of(context).pushReplacementNamed(Routes.init);
+        await Dialogs.alertDialog(
+          context: context,
+          continueButton: s.continueDialogButton,
+          title: s.successTitle,
+          message: s.successContent,
+          onContinue: () =>
+              Navigator.of(context).pushReplacementNamed(Routes.init),
+        );
         return;
       }
       await Dialogs.alertDialog(
@@ -182,6 +195,12 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void setListeners() {
+    fNameController.addListener(() {
+      fName = fNameController.text;
+    });
+    lNameController.addListener(() {
+      lName = lNameController.text;
+    });
     emailController.addListener(() {
       email = emailController.text;
     });

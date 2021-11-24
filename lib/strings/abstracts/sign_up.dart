@@ -24,4 +24,6 @@ mixin SignUpStringsMixin {
   String get successTitle;
 
   String get successContent;
+
+  String get btSubmit;
 }

@@ -15,15 +15,20 @@ class SignUpBloc {
 
   final s = StringsProvider.i.strings.signUp;
 
+  /// Submits registration of the new user. Returns null when everything
+  /// succeeded. Returns String with error message if something failed.
   Future<String?> submit(
       String email, String password, String fName, String lName) async {
     _isLoadingController.add(true);
     final res = await Auth.i.register(email, password);
+    // If firebase user creation succeeded, create user in BE
     if (res.result == SignUpResults.success) {
       final result = await GQLProvider.i.createUser(fName, lName);
       _isLoadingController.add(false);
       if (result.result == GQLResults.success) {
         return null;
+      } else {
+        await Auth.i.unregisterUser();
       }
     } else {
       _isLoadingController.add(false);

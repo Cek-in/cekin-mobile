@@ -35,8 +35,13 @@ class SignUpStringsCs with SignUpStringsMixin {
   String get failTitle => 'Chyba';
 
   @override
-  String get successContent => 'Uživatel zaregistrován';
+  String get successContent => 'Prosíme, ověřte si emailovou adresu pomocí '
+      'emailu, který vám v následujicích minutách dorazí.\nNezapomeňte '
+      'zkontrolovat složku spam.';
 
   @override
   String get successTitle => 'Úspěch';
+
+  @override
+  String get btSubmit => 'Registrovat';
 }

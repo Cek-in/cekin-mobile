@@ -4,6 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import '../api_address.dart';
 import '../auth/auth.dart';
 import '../utils/action_result.dart';
+import '../utils/logger.dart';
 import '../utils/preferences.dart';
 import 'gql_results.dart';
 import 'graphql_api.graphql.dart';
@@ -36,23 +37,33 @@ class GQLProvider {
   ) async {
     final res = await GQLProvider.i.client!.value.mutate(
       MutationOptions(
-        document: CreateUserMutation(
-          variables: CreateUserArguments(
-            user: CreateUserInput(
-              firstName: fName,
-              lastName: lName,
-              languageCode: Preferences.i.localePreference,
+          document: CreateUserMutation(
+            variables: CreateUserArguments(
+              user: CreateUserInput(
+                firstName: fName,
+                lastName: lName,
+                languageCode: Preferences.i.localePreference,
+              ),
             ),
-          ),
-        ).document,
-      ),
+          ).document,
+          variables: {
+            'user': {
+              'firstName': fName,
+              'lastName': lName,
+              'languageCode': Preferences.i.localePreference,
+            }
+          }),
     );
     if (res.hasException) {
+      Log.i.error(res.exception!.graphqlErrors.toString());
       return ActionResult(result: GQLResults.fail);
     }
-    if (res.data == null) return ActionResult(result: GQLResults.fail);
+    if (res.data == null) {
+      return ActionResult(result: GQLResults.fail);
+    }
     try {
-      final mutationResult = CreateUser$Mutation$User.fromJson(res.data!);
+      final mutationResult =
+          CreateUser$Mutation$User.fromJson(res.data!['createUser']);
       return ActionResult(result: GQLResults.success, value: mutationResult);
     } catch (e) {
       return ActionResult(result: GQLResults.fail);

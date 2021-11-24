@@ -24,6 +24,9 @@ dependencies:
   meta: ^1.7.0
   gql: ^0.13.0
 
+dependency_overrides:
+  gql_exec: 0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

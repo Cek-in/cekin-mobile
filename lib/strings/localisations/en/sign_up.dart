@@ -29,7 +29,8 @@ class SignUpStringsEn with SignUpStringsMixin {
   String get failedCreateUser => 'We could not create a new user';
 
   @override
-  String get successContent => 'User has been created';
+  String get successContent => 'Please, verify your email address using link '
+      'sent to your email.\nDo not forget to check your spam folder.';
 
   @override
   String get successTitle => 'Success';
@@ -39,4 +40,7 @@ class SignUpStringsEn with SignUpStringsMixin {
 
   @override
   String get weakPassword => 'Password is too weak';
+
+  @override
+  String get btSubmit => 'Register';
 }
