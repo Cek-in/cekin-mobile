@@ -33,6 +33,8 @@ android/app/google-services.json
 .pub/
 /build/
 lib/api_address.dart
+.graphqlconfig
+schema.graphql
 
 # Web related
 lib/generated_plugin_registrant.dart
