@@ -1,6 +1,6 @@
 import '../../strings/abstracts/validator.dart';
 import '../../strings/strings_provider.dart';
-import 'email_string_extension.dart';
+import 'validation_string_extension.dart';
 
 typedef TextValidator = String? Function(String?);
 
