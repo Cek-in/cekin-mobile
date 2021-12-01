@@ -1,5 +1,7 @@
 import 'general.dart';
+import 'home.dart';
 import 'login.dart';
+import 'qr_scan.dart';
 import 'sign_up.dart';
 import 'validator.dart';
 
@@ -8,4 +10,6 @@ abstract class CekInStrings {
   LoginStringsMixin get login;
   ValidatorStringsMixin get validatorStrings;
   SignUpStringsMixin get signUp;
+  QRScanStringsMixin get qrScan;
+  HomeStringsMixin get home;
 }

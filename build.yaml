@@ -6,6 +6,9 @@ targets:
     builders:
       artemis:
         options:
+          scalar_mapping:
+            - graphql_type: Date
+              dart_type: int
           schema_mapping:
             - schema: schema.graphql
               queries_glob: lib/external/*.graphql

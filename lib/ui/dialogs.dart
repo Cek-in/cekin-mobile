@@ -133,4 +133,77 @@ class Dialogs {
       },
     );
   }
+
+  static Future<void> confirmCheckIn({
+    required BuildContext context,
+    required String cancelButton,
+    required String continueButton,
+    required String title,
+    required String message,
+    required String place,
+    required VoidCallback onConfirm,
+  }) async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    place,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: PrimaryButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          text: cancelButton,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: PrimaryButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              onConfirm.call();
+                            },
+                            text: continueButton),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 }

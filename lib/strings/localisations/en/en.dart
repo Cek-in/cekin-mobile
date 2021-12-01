@@ -1,10 +1,14 @@
 import '../../abstracts/general.dart';
+import '../../abstracts/home.dart';
 import '../../abstracts/login.dart';
+import '../../abstracts/qr_scan.dart';
 import '../../abstracts/sign_up.dart';
 import '../../abstracts/strings.dart';
 import '../../abstracts/validator.dart';
 import 'general.dart';
+import 'home.dart';
 import 'login.dart';
+import 'qr_scan.dart';
 import 'sign_up.dart';
 import 'validator_strings.dart';
 
@@ -20,4 +24,10 @@ class StringsEn implements CekInStrings {
 
   @override
   SignUpStringsMixin get signUp => SignUpStringsEn();
+
+  @override
+  QRScanStringsMixin get qrScan => QRScanStringsEn();
+
+  @override
+  HomeStringsMixin get home => HomeStringsEn();
 }

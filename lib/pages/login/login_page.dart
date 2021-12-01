@@ -1,8 +1,8 @@
-import 'package:cek_in/ui/buttons/text_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../strings/strings_provider.dart';
 import '../../ui/buttons/primary_button.dart';
+import '../../ui/buttons/text_button.dart';
 import '../../ui/dialogs.dart';
 import '../../ui/flexible_view.dart';
 import '../../ui/form/text_form_field.dart';
@@ -12,11 +12,11 @@ import '../../utils/validation/validators.dart';
 import 'login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
-  final LoginPageBloc bloc;
   const LoginPage(
     this.bloc, {
     Key? key,
   }) : super(key: key);
+  final LoginPageBloc bloc;
 
   @override
   State<LoginPage> createState() => _LoginPageState();

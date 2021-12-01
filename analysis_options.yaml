@@ -25,3 +25,8 @@ linter:
     prefer_final_locals: false
     sort_pub_dependencies: false
     use_setters_to_change_properties: false
+
+analyzer:
+  exclude:
+    - lib/external/*.graphql.dart
+    - lib/external/*.g.dart

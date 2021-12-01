@@ -1,9 +1,9 @@
-import 'package:cek_in/external/graphql_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'auth/auth.dart';
+import 'external/graphql_provider.dart';
 import 'strings/strings_provider.dart';
 import 'utils/preferences.dart';
 import 'utils/routing/router.dart';

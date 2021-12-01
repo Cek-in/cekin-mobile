@@ -24,6 +24,8 @@ class AppRouter {
         return route(Pages.signUpPage());
       case Routes.forgotPassword:
         return route(Pages.forgotPasswordPage());
+      case Routes.qrScan:
+        return route(Pages.qrScanPage());
       case Routes.error:
         return MaterialPageRoute(builder: (c) => const ErrorPage());
       default:

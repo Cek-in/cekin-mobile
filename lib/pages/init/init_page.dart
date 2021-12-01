@@ -1,6 +1,6 @@
-import 'package:cek_in/utils/routing/routes.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/routing/routes.dart';
 import 'init_bloc.dart';
 
 class InitPage extends StatefulWidget {

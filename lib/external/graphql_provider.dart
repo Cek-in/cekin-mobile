@@ -33,7 +33,6 @@ class GQLProvider {
 
   Future<ActionResult<GQLResults, CreateUser$Mutation$User?>> createUser(
     fName,
-    lName,
   ) async {
     final res = await GQLProvider.i.client!.value.mutate(
       MutationOptions(
@@ -41,7 +40,6 @@ class GQLProvider {
             variables: CreateUserArguments(
               user: CreateUserInput(
                 firstName: fName,
-                lastName: lName,
                 languageCode: Preferences.i.localePreference,
               ),
             ),
@@ -49,7 +47,6 @@ class GQLProvider {
           variables: {
             'user': {
               'firstName': fName,
-              'lastName': lName,
               'languageCode': Preferences.i.localePreference,
             }
           }),
@@ -65,6 +62,66 @@ class GQLProvider {
       final mutationResult =
           CreateUser$Mutation$User.fromJson(res.data!['createUser']);
       return ActionResult(result: GQLResults.success, value: mutationResult);
+    } catch (e) {
+      return ActionResult(result: GQLResults.fail);
+    }
+  }
+
+  Future<ActionResult<GQLResults, GetPlace$Query$Place?>> getPlace(
+    qrValue,
+  ) async {
+    final res = await GQLProvider.i.client!.value.query(
+      QueryOptions(
+          document: GetPlaceQuery(
+            variables: GetPlaceArguments(
+              qrValue: qrValue,
+            ),
+          ).document,
+          variables: {
+            'qrValue': qrValue,
+          }),
+    );
+    if (res.hasException) {
+      Log.i.error(res.exception!.graphqlErrors.toString());
+      return ActionResult(result: GQLResults.fail);
+    }
+    if (res.data == null) {
+      return ActionResult(result: GQLResults.fail);
+    }
+    try {
+      final queryResult = GetPlace$Query$Place.fromJson(res.data!['place']);
+      return ActionResult(result: GQLResults.success, value: queryResult);
+    } catch (e) {
+      return ActionResult(result: GQLResults.fail);
+    }
+  }
+
+  Future<ActionResult<GQLResults, void>> checkIn(
+    qrValue,
+  ) async {
+    final res = await GQLProvider.i.client!.value.mutate(
+      MutationOptions(
+          document: CheckInMutation(
+            variables: CheckInArguments(
+              qrValue: qrValue,
+            ),
+          ).document,
+          variables: {
+            'qrValue': qrValue,
+          }),
+    );
+    if (res.hasException) {
+      Log.i.error(res.exception!.graphqlErrors.toString());
+      return ActionResult(result: GQLResults.fail);
+    }
+    if (res.data == null) {
+      return ActionResult(result: GQLResults.fail);
+    }
+    try {
+      if (res.data!['checkIn']) {
+        return ActionResult(result: GQLResults.success);
+      }
+      return ActionResult(result: GQLResults.fail);
     } catch (e) {
       return ActionResult(result: GQLResults.fail);
     }

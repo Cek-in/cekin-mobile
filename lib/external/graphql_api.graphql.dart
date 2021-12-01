@@ -18,8 +18,6 @@ class GetUser$Query$User extends JsonSerializable with EquatableMixin {
 
   late String firstName;
 
-  late String lastName;
-
   late String email;
 
   String? phone;
@@ -27,7 +25,7 @@ class GetUser$Query$User extends JsonSerializable with EquatableMixin {
   late String userType;
 
   @override
-  List<Object?> get props => [id, firstName, lastName, email, phone, userType];
+  List<Object?> get props => [id, firstName, email, phone, userType];
   @override
   Map<String, dynamic> toJson() => _$GetUser$Query$UserToJson(this);
 }
@@ -39,12 +37,97 @@ class GetUser$Query extends JsonSerializable with EquatableMixin {
   factory GetUser$Query.fromJson(Map<String, dynamic> json) =>
       _$GetUser$QueryFromJson(json);
 
-  GetUser$Query$User? user;
+  late GetUser$Query$User user;
 
   @override
   List<Object?> get props => [user];
   @override
   Map<String, dynamic> toJson() => _$GetUser$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPlace$Query$Place extends JsonSerializable with EquatableMixin {
+  GetPlace$Query$Place();
+
+  factory GetPlace$Query$Place.fromJson(Map<String, dynamic> json) =>
+      _$GetPlace$Query$PlaceFromJson(json);
+
+  late String id;
+
+  late String name;
+
+  @override
+  List<Object?> get props => [id, name];
+  @override
+  Map<String, dynamic> toJson() => _$GetPlace$Query$PlaceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPlace$Query extends JsonSerializable with EquatableMixin {
+  GetPlace$Query();
+
+  factory GetPlace$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetPlace$QueryFromJson(json);
+
+  GetPlace$Query$Place? place;
+
+  @override
+  List<Object?> get props => [place];
+  @override
+  Map<String, dynamic> toJson() => _$GetPlace$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetCheckIns$Query$CheckIn$Place extends JsonSerializable
+    with EquatableMixin {
+  GetCheckIns$Query$CheckIn$Place();
+
+  factory GetCheckIns$Query$CheckIn$Place.fromJson(Map<String, dynamic> json) =>
+      _$GetCheckIns$Query$CheckIn$PlaceFromJson(json);
+
+  late String name;
+
+  @override
+  List<Object?> get props => [name];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$GetCheckIns$Query$CheckIn$PlaceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetCheckIns$Query$CheckIn extends JsonSerializable with EquatableMixin {
+  GetCheckIns$Query$CheckIn();
+
+  factory GetCheckIns$Query$CheckIn.fromJson(Map<String, dynamic> json) =>
+      _$GetCheckIns$Query$CheckInFromJson(json);
+
+  late String id;
+
+  late String placeId;
+
+  late GetCheckIns$Query$CheckIn$Place place;
+
+  late int checkInTime;
+
+  @override
+  List<Object?> get props => [id, placeId, place, checkInTime];
+  @override
+  Map<String, dynamic> toJson() => _$GetCheckIns$Query$CheckInToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetCheckIns$Query extends JsonSerializable with EquatableMixin {
+  GetCheckIns$Query();
+
+  factory GetCheckIns$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetCheckIns$QueryFromJson(json);
+
+  List<GetCheckIns$Query$CheckIn>? ownCheckIns;
+
+  @override
+  List<Object?> get props => [ownCheckIns];
+  @override
+  Map<String, dynamic> toJson() => _$GetCheckIns$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -79,10 +162,7 @@ class CreateUser$Mutation extends JsonSerializable with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class CreateUserInput extends JsonSerializable with EquatableMixin {
-  CreateUserInput(
-      {required this.firstName,
-      required this.languageCode,
-      required this.lastName});
+  CreateUserInput({required this.firstName, required this.languageCode});
 
   factory CreateUserInput.fromJson(Map<String, dynamic> json) =>
       _$CreateUserInputFromJson(json);
@@ -91,12 +171,25 @@ class CreateUserInput extends JsonSerializable with EquatableMixin {
 
   late String languageCode;
 
-  late String lastName;
-
   @override
-  List<Object?> get props => [firstName, languageCode, lastName];
+  List<Object?> get props => [firstName, languageCode];
   @override
   Map<String, dynamic> toJson() => _$CreateUserInputToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CheckIn$Mutation extends JsonSerializable with EquatableMixin {
+  CheckIn$Mutation();
+
+  factory CheckIn$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$CheckIn$MutationFromJson(json);
+
+  bool? checkIn;
+
+  @override
+  List<Object?> get props => [checkIn];
+  @override
+  Map<String, dynamic> toJson() => _$CheckIn$MutationToJson(this);
 }
 
 final GET_USER_QUERY_DOCUMENT = DocumentNode(definitions: [
@@ -120,12 +213,6 @@ final GET_USER_QUERY_DOCUMENT = DocumentNode(definitions: [
                   selectionSet: null),
               FieldNode(
                   name: NameNode(value: 'firstName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'lastName'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -169,14 +256,154 @@ class GetUserQuery extends GraphQLQuery<GetUser$Query, JsonSerializable> {
 }
 
 @JsonSerializable(explicitToJson: true)
+class GetPlaceArguments extends JsonSerializable with EquatableMixin {
+  GetPlaceArguments({required this.qrValue});
+
+  @override
+  factory GetPlaceArguments.fromJson(Map<String, dynamic> json) =>
+      _$GetPlaceArgumentsFromJson(json);
+
+  late String qrValue;
+
+  @override
+  List<Object?> get props => [qrValue];
+  @override
+  Map<String, dynamic> toJson() => _$GetPlaceArgumentsToJson(this);
+}
+
+final GET_PLACE_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetPlace'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'qrValue')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'place'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'qrValue'),
+                  value: VariableNode(name: NameNode(value: 'qrValue')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class GetPlaceQuery extends GraphQLQuery<GetPlace$Query, GetPlaceArguments> {
+  GetPlaceQuery({required this.variables});
+
+  @override
+  final DocumentNode document = GET_PLACE_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetPlace';
+
+  @override
+  final GetPlaceArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  GetPlace$Query parse(Map<String, dynamic> json) =>
+      GetPlace$Query.fromJson(json);
+}
+
+final GET_CHECK_INS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetCheckIns'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'ownCheckIns'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'placeId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'place'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'checkInTime'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class GetCheckInsQuery
+    extends GraphQLQuery<GetCheckIns$Query, JsonSerializable> {
+  GetCheckInsQuery();
+
+  @override
+  final DocumentNode document = GET_CHECK_INS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetCheckIns';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  GetCheckIns$Query parse(Map<String, dynamic> json) =>
+      GetCheckIns$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
 class CreateUserArguments extends JsonSerializable with EquatableMixin {
-  CreateUserArguments({this.user});
+  CreateUserArguments({required this.user});
 
   @override
   factory CreateUserArguments.fromJson(Map<String, dynamic> json) =>
       _$CreateUserArgumentsFromJson(json);
 
-  final CreateUserInput? user;
+  late CreateUserInput user;
 
   @override
   List<Object?> get props => [user];
@@ -192,7 +419,7 @@ final CREATE_USER_MUTATION_DOCUMENT = DocumentNode(definitions: [
         VariableDefinitionNode(
             variable: VariableNode(name: NameNode(value: 'user')),
             type: NamedTypeNode(
-                name: NameNode(value: 'CreateUserInput'), isNonNull: false),
+                name: NameNode(value: 'CreateUserInput'), isNonNull: true),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
@@ -236,4 +463,66 @@ class CreateUserMutation
   @override
   CreateUser$Mutation parse(Map<String, dynamic> json) =>
       CreateUser$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CheckInArguments extends JsonSerializable with EquatableMixin {
+  CheckInArguments({required this.qrValue});
+
+  @override
+  factory CheckInArguments.fromJson(Map<String, dynamic> json) =>
+      _$CheckInArgumentsFromJson(json);
+
+  late String qrValue;
+
+  @override
+  List<Object?> get props => [qrValue];
+  @override
+  Map<String, dynamic> toJson() => _$CheckInArgumentsToJson(this);
+}
+
+final CHECK_IN_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'CheckIn'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'qrValue')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'checkIn'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'qrValue'),
+                  value: VariableNode(name: NameNode(value: 'qrValue')))
+            ],
+            directives: [],
+            selectionSet: null)
+      ]))
+]);
+
+class CheckInMutation extends GraphQLQuery<CheckIn$Mutation, CheckInArguments> {
+  CheckInMutation({required this.variables});
+
+  @override
+  final DocumentNode document = CHECK_IN_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'CheckIn';
+
+  @override
+  final CheckInArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  CheckIn$Mutation parse(Map<String, dynamic> json) =>
+      CheckIn$Mutation.fromJson(json);
 }

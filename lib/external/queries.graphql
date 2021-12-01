@@ -2,9 +2,26 @@ query GetUser {
     user {
         id
         firstName
-        lastName
         email
         phone
         userType
+    }
+}
+
+query GetPlace($qrValue: String!) {
+    place(qrValue: $qrValue) {
+        id,
+        name,
+    }
+}
+
+query GetCheckIns {
+    ownCheckIns {
+        id
+        placeId
+        place {
+            name
+        }
+        checkInTime
     }
 }
