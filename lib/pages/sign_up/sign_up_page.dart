@@ -23,14 +23,12 @@ class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
 
   final fNameController = TextEditingController();
-  final lNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
 
   final s = StringsProvider.i.strings.signUp;
 
-  final lNameNode = FocusNode();
   final emailNode = FocusNode();
   final passwordNode = FocusNode();
   final passwordConfirmNode = FocusNode();
@@ -38,7 +36,6 @@ class _SignUpPageState extends State<SignUpPage> {
   bool obscureConfirmPassword = true;
 
   String fName = '';
-  String lName = '';
   String email = '';
   String password = '';
   String passwordConfirm = '';
@@ -52,7 +49,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void dispose() {
     fNameController.dispose();
-    lNameController.dispose();
     emailController.dispose();
     passwordConfirmController.dispose();
     passwordController.dispose();
@@ -80,7 +76,6 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               children: [
                 buildFNameField(),
-                buildLNameField(),
                 buildEmailField(),
                 buildPasswordField(),
                 buildConfirmPasswordField(),
@@ -105,24 +100,9 @@ class _SignUpPageState extends State<SignUpPage> {
       textInputAction: TextInputAction.next,
       autofillHints: const [AutofillHints.givenName],
       onFieldSubmitted: (_) {
-        lNameNode.requestFocus();
-      },
-      label: s.firstName,
-    );
-  }
-
-  Widget buildLNameField() {
-    return CekInTextFormField(
-      controller: lNameController,
-      validator: Validators.empty,
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      focusNode: lNameNode,
-      autofillHints: const [AutofillHints.familyName],
-      onFieldSubmitted: (_) {
         emailNode.requestFocus();
       },
-      label: s.lastName,
+      label: s.firstName,
     );
   }
 
@@ -173,7 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> submit() async {
     if (formKey.currentState!.validate()) {
-      final res = await widget.bloc.submit(email, password, fName, lName);
+      final res = await widget.bloc.submit(email, password, fName);
       if (res == null) {
         await Dialogs.alertDialog(
           context: context,
@@ -197,9 +177,6 @@ class _SignUpPageState extends State<SignUpPage> {
   void setListeners() {
     fNameController.addListener(() {
       fName = fNameController.text;
-    });
-    lNameController.addListener(() {
-      lName = lNameController.text;
     });
     emailController.addListener(() {
       email = emailController.text;

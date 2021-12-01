@@ -1,5 +1,9 @@
-mutation CreateUser($user: CreateUserInput) {
+mutation CreateUser($user: CreateUserInput!) {
     createUser(user: $user) {
         id
     }
+}
+
+mutation CheckIn($qrValue: String!) {
+    checkIn(qrValue: $qrValue)
 }
