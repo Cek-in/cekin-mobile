@@ -14,7 +14,16 @@ class HomePageBloc {
 
   Stream<bool> get isLoadingStream => _isLoadingController.stream;
 
-  Future Function()? refetchCallback;
+  Future<void> Function()? refetchCallback;
+
+  int Function(String, String) get checkInGroupComparator => (a, b) {
+        return DateTime.parse(a).compareTo(DateTime.parse(b));
+      };
+
+  String Function(GetCheckIns$Query$CheckIn) get checkInGrouper => (checkIn) {
+        final date = DateTime.fromMillisecondsSinceEpoch(checkIn.checkInTime);
+        return DateTime(date.year, date.month, date.day).toIso8601String();
+      };
 
   Future<CheckInResults> checkIn(String qrValue) async {
     _isLoadingController.add(true);

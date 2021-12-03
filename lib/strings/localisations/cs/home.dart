@@ -50,4 +50,7 @@ class HomeStringsCs with HomeStringsMixin {
 
   @override
   String get getCheckInsFailNoCodeGiven => 'Žádný chybový kód';
+
+  @override
+  String get title => 'Domů';
 }

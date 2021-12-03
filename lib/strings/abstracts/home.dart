@@ -28,4 +28,6 @@ mixin HomeStringsMixin {
   String get getCheckInsFailMessage;
 
   String get getCheckInsFailNoCodeGiven;
+
+  String get title;
 }

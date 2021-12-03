@@ -51,4 +51,7 @@ class HomeStringsEn with HomeStringsMixin {
 
   @override
   String get getCheckInsFailNoCodeGiven => 'No error code';
+
+  @override
+  String get title => 'Home';
 }

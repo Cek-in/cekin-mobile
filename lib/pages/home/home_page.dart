@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../auth/auth.dart';
 import '../../strings/strings_provider.dart';
 import '../../ui/dialogs.dart';
 import '../../ui/loading_overlay.dart';
+import '../../ui/sliver_app_bar.dart';
 import '../../utils/routing/routes.dart';
 import '../qr_scan/scan_result.dart';
 import 'checkins.dart';
@@ -23,8 +25,47 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
+      body: LoadingOverlay(
+        isLoading: widget.bloc.isLoadingStream,
+        child: NestedScrollView(
+          headerSliverBuilder: (_, b) => buildHeader(),
+          body: RefreshIndicator(
+            onRefresh: () async {
+              await widget.bloc.refetchCallback?.call();
+            },
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: CheckIns(widget.bloc),
+              ),
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: onScanTapped,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset('assets/icon/Icon.png'),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> buildHeader() {
+    return [
+      CekInSliverAppBar(
+        title: s.title,
+        expandedSpace: Padding(
+          padding: const EdgeInsets.all(50.0),
+          child: SvgPicture.asset(
+            'assets/images/cekin-full.svg',
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
+        pinned: true,
         leading: IconButton(
           icon: Icon(Icons.logout),
           onPressed: () {
@@ -32,17 +73,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      body: LoadingOverlay(
-        isLoading: widget.bloc.isLoadingStream,
-        child: CheckIns(widget.bloc),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: onScanTapped,
-        child: const Icon(
-          Icons.qr_code_scanner_outlined,
-        ),
-      ),
-    );
+    ];
   }
 
   Future<void> onScanTapped() async {
