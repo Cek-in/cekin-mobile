@@ -1,3 +1,6 @@
+import 'package:cek_in/strings/abstracts/check_in_details.dart';
+import 'package:cek_in/strings/localisations/cs/check_in_details.dart';
+
 import '../../abstracts/general.dart';
 import '../../abstracts/home.dart';
 import '../../abstracts/login.dart';
@@ -30,4 +33,7 @@ class StringsCs implements CekInStrings {
 
   @override
   HomeStringsMixin get home => HomeStringsCs();
+
+  @override
+  CheckInDetailsStringsMixin get checkInDetails => CheckInDetailsStringsCs();
 }

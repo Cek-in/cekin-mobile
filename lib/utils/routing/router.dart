@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../pages/error_page.dart';
+import '../../utils/types.dart';
 import '../logger.dart';
 import 'pages.dart';
 import 'routes.dart';
@@ -20,6 +21,8 @@ class AppRouter {
         return route(Pages.initPage());
       case Routes.login:
         return route(Pages.loginPage());
+      case Routes.checkInDetails:
+        return route(Pages.checkInDetailsPage(settings.arguments as CheckIn));
       case Routes.signUp:
         return route(Pages.signUpPage());
       case Routes.forgotPassword:

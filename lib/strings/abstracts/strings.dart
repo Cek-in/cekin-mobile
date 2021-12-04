@@ -1,3 +1,4 @@
+import 'check_in_details.dart';
 import 'general.dart';
 import 'home.dart';
 import 'login.dart';
@@ -12,4 +13,5 @@ abstract class CekInStrings {
   SignUpStringsMixin get signUp;
   QRScanStringsMixin get qrScan;
   HomeStringsMixin get home;
+  CheckInDetailsStringsMixin get checkInDetails;
 }

@@ -11,7 +11,7 @@ class GoBackButton extends StatelessWidget {
       },
       icon: Icon(
         Icons.arrow_back,
-        color: Theme.of(context).colorScheme.onSecondary,
+        color: Theme.of(context).colorScheme.onPrimary,
       ),
     );
   }

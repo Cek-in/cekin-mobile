@@ -1,3 +1,4 @@
+import 'package:cek_in/utils/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -9,6 +10,7 @@ import '../../ui/divider.dart';
 import '../../utils/date_formatter.dart';
 import '../../utils/int_extension.dart';
 import '../../utils/logger.dart';
+import '../../utils/types.dart';
 import 'home_bloc.dart';
 
 class CheckIns extends StatelessWidget {
@@ -60,7 +62,7 @@ class CheckIns extends StatelessWidget {
         order: GroupedListOrder.DESC,
         groupComparator: _bloc.checkInGroupComparator,
         itemComparator: _bloc.chekInItemComparator,
-        groupHeaderBuilder: (GetCheckIns$Query$CheckIn checkIn) {
+        groupHeaderBuilder: (CheckIn checkIn) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -76,7 +78,7 @@ class CheckIns extends StatelessWidget {
             ],
           );
         },
-        itemBuilder: (context, GetCheckIns$Query$CheckIn checkIn) {
+        itemBuilder: (context, CheckIn checkIn) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
             child: CekInCard(
@@ -85,9 +87,12 @@ class CheckIns extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      checkIn.place.name,
-                      style: Theme.of(context).textTheme.headline6,
+                    Hero(
+                      tag: checkIn.id,
+                      child: Text(
+                        checkIn.place.name,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
                     ),
                     Text(
                       DateFormatter.toSimpleHourMinute(
@@ -96,6 +101,10 @@ class CheckIns extends StatelessWidget {
                   ],
                 ),
               ),
+              onTap: () {
+                Navigator.of(context)
+                    .pushNamed(Routes.checkInDetails, arguments: checkIn);
+              },
             ),
           );
         },
