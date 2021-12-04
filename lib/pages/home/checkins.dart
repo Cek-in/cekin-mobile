@@ -1,12 +1,13 @@
-import 'package:cek_in/ui/card.dart';
-import 'package:cek_in/ui/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:grouped_list/grouped_list.dart';
 
 import '../../external/graphql_api.dart';
 import '../../strings/strings_provider.dart';
-import '../../utils/date_time_extension.dart';
+import '../../ui/card.dart';
+import '../../ui/divider.dart';
+import '../../utils/date_formatter.dart';
+import '../../utils/int_extension.dart';
 import '../../utils/logger.dart';
 import 'home_bloc.dart';
 
@@ -53,31 +54,49 @@ class CheckIns extends StatelessWidget {
     if (checkIns.result == CheckInParseResults.success &&
         checkIns.value != null) {
       return GroupedListView(
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
         elements: checkIns.value!,
         order: GroupedListOrder.DESC,
         groupComparator: _bloc.checkInGroupComparator,
-        separator: CekInDivider(),
+        itemComparator: _bloc.chekInItemComparator,
         groupHeaderBuilder: (GetCheckIns$Query$CheckIn checkIn) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 17.0, bottom: 4.0, left: 5.0),
-            child: Text(
-              DateTime.fromMillisecondsSinceEpoch(checkIn.checkInTime)
-                  .toSimpleString,
-              style: Theme.of(context).textTheme.subtitle2,
-            ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CekInDivider(
+                padding: EdgeInsets.only(bottom: 4),
+              ),
+              Text(
+                DateFormatter.toSimpleDate(checkIn.checkInTime.toDateTime),
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+              SizedBox(height: 4),
+            ],
           );
         },
         itemBuilder: (context, GetCheckIns$Query$CheckIn checkIn) {
-          return CekInCard(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                checkIn.place.name,
-                style: Theme.of(context).textTheme.headline6,
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: CekInCard(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      checkIn.place.name,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(
+                      DateFormatter.toSimpleHourMinute(
+                          checkIn.checkInTime.toDateTime),
+                    ),
+                  ],
+                ),
               ),
             ),
-            onTap: () {},
           );
         },
         groupBy: _bloc.checkInGrouper,

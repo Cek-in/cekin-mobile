@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cek_in/utils/int_extension.dart';
+
 import '../../external/gql_results.dart';
 import '../../external/graphql_api.dart';
 import '../../external/graphql_provider.dart';
@@ -24,6 +26,11 @@ class HomePageBloc {
         final date = DateTime.fromMillisecondsSinceEpoch(checkIn.checkInTime);
         return DateTime(date.year, date.month, date.day).toIso8601String();
       };
+
+  int Function(GetCheckIns$Query$CheckIn, GetCheckIns$Query$CheckIn)
+      get chekInItemComparator => (a, b) {
+            return a.checkInTime.toDateTime.compareTo(b.checkInTime.toDateTime);
+          };
 
   Future<CheckInResults> checkIn(String qrValue) async {
     _isLoadingController.add(true);

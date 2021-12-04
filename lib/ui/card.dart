@@ -25,8 +25,8 @@ class CekInCard extends StatelessWidget {
             ? [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.10),
-                  spreadRadius: 4,
-                  blurRadius: 13,
+                  spreadRadius: 3,
+                  blurRadius: 8,
                   offset: const Offset(0, 5), // changes position of shadow
                 ),
               ]

@@ -30,7 +30,7 @@ class CekInSliverAppBar extends StatelessWidget {
         centerTitle: true,
         title: Text(
           title,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: Theme.of(context).textTheme.subtitle1!.copyWith(
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
         ),
@@ -42,7 +42,7 @@ class CekInSliverAppBar extends StatelessWidget {
           leading ?? (Navigator.canPop(context) ? const GoBackButton() : null),
       centerTitle: true,
       backgroundColor: Theme.of(context).colorScheme.surface,
-      elevation: 0.5,
+      elevation: 5,
       forceElevated: true,
       pinned: pinned,
     );
