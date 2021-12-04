@@ -21,7 +21,10 @@ query GetCheckIns {
         placeId
         place {
             name
+            latitude
+            longitude
         }
         checkInTime
+        checkOutTime
     }
 }

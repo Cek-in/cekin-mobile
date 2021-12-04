@@ -61,12 +61,17 @@ Map<String, dynamic> _$GetPlace$QueryToJson(GetPlace$Query instance) =>
 
 GetCheckIns$Query$CheckIn$Place _$GetCheckIns$Query$CheckIn$PlaceFromJson(
         Map<String, dynamic> json) =>
-    GetCheckIns$Query$CheckIn$Place()..name = json['name'] as String;
+    GetCheckIns$Query$CheckIn$Place()
+      ..name = json['name'] as String
+      ..latitude = (json['latitude'] as num).toDouble()
+      ..longitude = (json['longitude'] as num).toDouble();
 
 Map<String, dynamic> _$GetCheckIns$Query$CheckIn$PlaceToJson(
         GetCheckIns$Query$CheckIn$Place instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };
 
 GetCheckIns$Query$CheckIn _$GetCheckIns$Query$CheckInFromJson(
@@ -76,7 +81,8 @@ GetCheckIns$Query$CheckIn _$GetCheckIns$Query$CheckInFromJson(
       ..placeId = json['placeId'] as String
       ..place = GetCheckIns$Query$CheckIn$Place.fromJson(
           json['place'] as Map<String, dynamic>)
-      ..checkInTime = json['checkInTime'] as int;
+      ..checkInTime = json['checkInTime'] as int
+      ..checkOutTime = json['checkOutTime'] as int?;
 
 Map<String, dynamic> _$GetCheckIns$Query$CheckInToJson(
         GetCheckIns$Query$CheckIn instance) =>
@@ -85,6 +91,7 @@ Map<String, dynamic> _$GetCheckIns$Query$CheckInToJson(
       'placeId': instance.placeId,
       'place': instance.place.toJson(),
       'checkInTime': instance.checkInTime,
+      'checkOutTime': instance.checkOutTime,
     };
 
 GetCheckIns$Query _$GetCheckIns$QueryFromJson(Map<String, dynamic> json) =>

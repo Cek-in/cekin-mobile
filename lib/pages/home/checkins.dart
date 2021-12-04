@@ -1,4 +1,3 @@
-import 'package:cek_in/utils/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -10,6 +9,7 @@ import '../../ui/divider.dart';
 import '../../utils/date_formatter.dart';
 import '../../utils/int_extension.dart';
 import '../../utils/logger.dart';
+import '../../utils/routing/routes.dart';
 import '../../utils/types.dart';
 import 'home_bloc.dart';
 
@@ -80,33 +80,8 @@ class CheckIns extends StatelessWidget {
         },
         itemBuilder: (context, CheckIn checkIn) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: CekInCard(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Hero(
-                      tag: checkIn.id,
-                      child: Text(
-                        checkIn.place.name,
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ),
-                    Text(
-                      DateFormatter.toSimpleHourMinute(
-                          checkIn.checkInTime.toDateTime),
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context)
-                    .pushNamed(Routes.checkInDetails, arguments: checkIn);
-              },
-            ),
-          );
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: _buildCheckInCard(checkIn, context));
         },
         groupBy: _bloc.checkInGrouper,
       );
@@ -147,6 +122,33 @@ class CheckIns extends StatelessWidget {
                 })
         ],
       ),
+    );
+  }
+
+  Widget _buildCheckInCard(CheckIn checkIn, BuildContext context) {
+    return CekInCard(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Hero(
+              tag: checkIn.id,
+              child: Text(
+                checkIn.place.name,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            Text(
+              DateFormatter.toSimpleHourMinute(checkIn.checkInTime.toDateTime),
+            ),
+          ],
+        ),
+      ),
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(Routes.checkInDetails, arguments: checkIn);
+      },
     );
   }
 }

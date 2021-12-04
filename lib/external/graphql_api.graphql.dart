@@ -87,8 +87,12 @@ class GetCheckIns$Query$CheckIn$Place extends JsonSerializable
 
   late String name;
 
+  late double latitude;
+
+  late double longitude;
+
   @override
-  List<Object?> get props => [name];
+  List<Object?> get props => [name, latitude, longitude];
   @override
   Map<String, dynamic> toJson() =>
       _$GetCheckIns$Query$CheckIn$PlaceToJson(this);
@@ -109,8 +113,10 @@ class GetCheckIns$Query$CheckIn extends JsonSerializable with EquatableMixin {
 
   late int checkInTime;
 
+  int? checkOutTime;
+
   @override
-  List<Object?> get props => [id, placeId, place, checkInTime];
+  List<Object?> get props => [id, placeId, place, checkInTime, checkOutTime];
   @override
   Map<String, dynamic> toJson() => _$GetCheckIns$Query$CheckInToJson(this);
 }
@@ -366,10 +372,28 @@ final GET_CHECK_INS_QUERY_DOCUMENT = DocumentNode(definitions: [
                         alias: null,
                         arguments: [],
                         directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'latitude'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'longitude'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
                         selectionSet: null)
                   ])),
               FieldNode(
                   name: NameNode(value: 'checkInTime'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'checkOutTime'),
                   alias: null,
                   arguments: [],
                   directives: [],
