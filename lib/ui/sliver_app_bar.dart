@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/preferences.dart';
 import 'buttons/go_back_button.dart';
 
 class CekInSliverAppBar extends StatelessWidget {
@@ -25,6 +26,7 @@ class CekInSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      systemOverlayStyle: Preferences.i.selectedTheme.appBarOverlayStyle,
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.pin,
         centerTitle: true,

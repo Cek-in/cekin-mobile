@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../strings/strings_provider.dart';
+import '../../ui/app_bar.dart';
 import '../../ui/loading_overlay.dart';
 import 'qr_scan_bloc.dart';
 
@@ -47,9 +48,8 @@ class _QRScanPageState extends State<QRScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CekInAppBar.get(
         title: Text(s.scanQrTitle),
-        systemOverlayStyle: Theme.of(context).appBarTheme.systemOverlayStyle,
       ),
       body: LoadingOverlay(
         isLoading: widget.bloc.loadingStream,

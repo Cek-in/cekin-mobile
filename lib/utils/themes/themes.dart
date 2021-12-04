@@ -35,7 +35,7 @@ class CekInThemes {
           brightness: Brightness.light,
         ),
       ),
-      SystemUiOverlayStyle.dark);
+      SystemUiOverlayStyle.light);
   static final darkTheme =
       CekInTheme('dark', ThemeData(), SystemUiOverlayStyle.dark);
 }

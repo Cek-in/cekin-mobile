@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../strings/strings_provider.dart';
+import '../../ui/app_bar.dart';
 import '../../ui/buttons/primary_button.dart';
 import '../../ui/buttons/text_button.dart';
 import '../../ui/dialogs.dart';
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CekInAppBar.get(
         title: Text(s.appBarTitle),
       ),
       body: buildBody(),
