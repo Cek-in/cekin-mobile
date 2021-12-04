@@ -54,4 +54,13 @@ class HomeStringsEn with HomeStringsMixin {
 
   @override
   String get title => 'Home';
+
+  @override
+  String get btCancelLogout => 'No';
+
+  @override
+  String get btConfirmLogin => 'Yes';
+
+  @override
+  String get logoutQuestion => 'Logout?';
 }

@@ -30,4 +30,10 @@ mixin HomeStringsMixin {
   String get getCheckInsFailNoCodeGiven;
 
   String get title;
+
+  String get logoutQuestion;
+
+  String get btCancelLogout;
+
+  String get btConfirmLogin;
 }

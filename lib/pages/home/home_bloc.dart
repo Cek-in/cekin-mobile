@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:cek_in/utils/int_extension.dart';
-
 import '../../external/gql_results.dart';
-import '../../external/graphql_api.dart';
 import '../../external/graphql_provider.dart';
 import '../../utils/action_result.dart';
+import '../../utils/int_extension.dart';
 import '../../utils/logger.dart';
+import '../../utils/types.dart';
 
 //ignore_for_file:avoid_dynamic_calls
 class HomePageBloc {
@@ -22,15 +21,14 @@ class HomePageBloc {
         return DateTime.parse(a).compareTo(DateTime.parse(b));
       };
 
-  String Function(GetCheckIns$Query$CheckIn) get checkInGrouper => (checkIn) {
+  String Function(CheckIn) get checkInGrouper => (checkIn) {
         final date = DateTime.fromMillisecondsSinceEpoch(checkIn.checkInTime);
         return DateTime(date.year, date.month, date.day).toIso8601String();
       };
 
-  int Function(GetCheckIns$Query$CheckIn, GetCheckIns$Query$CheckIn)
-      get chekInItemComparator => (a, b) {
-            return a.checkInTime.toDateTime.compareTo(b.checkInTime.toDateTime);
-          };
+  int Function(CheckIn, CheckIn) get chekInItemComparator => (a, b) {
+        return a.checkInTime.toDateTime.compareTo(b.checkInTime.toDateTime);
+      };
 
   Future<CheckInResults> checkIn(String qrValue) async {
     _isLoadingController.add(true);
@@ -48,12 +46,11 @@ class HomePageBloc {
     _isLoadingController.close();
   }
 
-  ActionResult<CheckInParseResults, List<GetCheckIns$Query$CheckIn>> parseData(
+  ActionResult<CheckInParseResults, List<CheckIn>> parseData(
       Map<String, dynamic> data) {
     try {
-      final res = List<GetCheckIns$Query$CheckIn>.from(data['ownCheckIns']
-          .map<GetCheckIns$Query$CheckIn>(
-              (value) => GetCheckIns$Query$CheckIn.fromJson(value)));
+      final res = List<CheckIn>.from(
+          data['ownCheckIns'].map<CheckIn>((value) => CheckIn.fromJson(value)));
       return ActionResult(result: CheckInParseResults.success, value: res);
     } catch (e) {
       Log.i.error(e.toString());

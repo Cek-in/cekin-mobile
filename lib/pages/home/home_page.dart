@@ -69,7 +69,12 @@ class _HomePageState extends State<HomePage> {
         leading: IconButton(
           icon: Icon(Icons.logout),
           onPressed: () {
-            Auth.i.logout();
+            Dialogs.confirmDialog(
+                context: context,
+                question: s.logoutQuestion,
+                cancelButton: s.btCancelLogout,
+                confirmButton: s.btConfirmLogin,
+                onSuccess: Auth.i.logout);
           },
         ),
       ),

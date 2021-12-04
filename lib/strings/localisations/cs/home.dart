@@ -53,4 +53,13 @@ class HomeStringsCs with HomeStringsMixin {
 
   @override
   String get title => 'Domů';
+
+  @override
+  String get btCancelLogout => 'Ne';
+
+  @override
+  String get btConfirmLogin => 'Ano';
+
+  @override
+  String get logoutQuestion => 'Odhlásit?';
 }
