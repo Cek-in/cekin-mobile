@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         initialRoute: userSignedIn ? Routes.init : Routes.login,
         locale: Locale(Preferences.i.localePreference),
         navigatorKey: AppRouter.i.key,
+        debugShowCheckedModeBanner: false,
         theme: Preferences.i.selectedTheme.theme,
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,

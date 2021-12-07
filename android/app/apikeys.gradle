@@ -1,0 +1,24 @@
+def getGMapsApiKey() {
+    // This file is expected to reside in project path "./android/apikeys.properties"
+    def apiKeysPropertiesFile = rootProject.file('apikeys.properties')
+
+    if (apiKeysPropertiesFile.exists()) {
+        def props = new Properties()
+        apiKeysPropertiesFile.withReader('UTF-8') { reader ->
+            props.load(reader)
+        }
+
+        def googleMapsApiKey = props.getProperty('GoogleMapsApiKey')
+        if (googleMapsApiKey == null) {
+            throw new GradleException(where + "GoogleMapsApiKey not found. Define GoogleMapsApiKey in the apikeys.properties file.")
+        }
+        return googleMapsApiKey
+    } else {
+        def exception = new IllegalAccessException("Must specify Google Maps API Key, did you forget to add apikeys.properties file?")
+        throw new GradleScriptException("No Google Maps API key", exception)
+    }
+}
+
+ext {
+    MAPS_API_KEY = getGMapsApiKey()
+}

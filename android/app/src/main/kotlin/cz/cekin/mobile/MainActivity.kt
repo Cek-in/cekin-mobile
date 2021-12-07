@@ -1,4 +1,4 @@
-package cz.cekin.cek_in
+package cz.cekin.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
