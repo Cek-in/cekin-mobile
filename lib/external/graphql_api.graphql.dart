@@ -16,16 +16,10 @@ class GetUser$Query$User extends JsonSerializable with EquatableMixin {
 
   late String id;
 
-  late String firstName;
-
-  late String email;
-
-  String? phone;
-
   late String userType;
 
   @override
-  List<Object?> get props => [id, firstName, email, phone, userType];
+  List<Object?> get props => [id, userType];
   @override
   Map<String, dynamic> toJson() => _$GetUser$Query$UserToJson(this);
 }
@@ -167,23 +161,6 @@ class CreateUser$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CreateUserInput extends JsonSerializable with EquatableMixin {
-  CreateUserInput({required this.firstName, required this.languageCode});
-
-  factory CreateUserInput.fromJson(Map<String, dynamic> json) =>
-      _$CreateUserInputFromJson(json);
-
-  late String firstName;
-
-  late String languageCode;
-
-  @override
-  List<Object?> get props => [firstName, languageCode];
-  @override
-  Map<String, dynamic> toJson() => _$CreateUserInputToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class CheckIn$Mutation extends JsonSerializable with EquatableMixin {
   CheckIn$Mutation();
 
@@ -213,24 +190,6 @@ final GET_USER_QUERY_DOCUMENT = DocumentNode(definitions: [
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
                   name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'firstName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'email'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'phone'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -421,16 +380,16 @@ class GetCheckInsQuery
 
 @JsonSerializable(explicitToJson: true)
 class CreateUserArguments extends JsonSerializable with EquatableMixin {
-  CreateUserArguments({required this.user});
+  CreateUserArguments({required this.languageCode});
 
   @override
   factory CreateUserArguments.fromJson(Map<String, dynamic> json) =>
       _$CreateUserArgumentsFromJson(json);
 
-  late CreateUserInput user;
+  late String languageCode;
 
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [languageCode];
   @override
   Map<String, dynamic> toJson() => _$CreateUserArgumentsToJson(this);
 }
@@ -441,9 +400,9 @@ final CREATE_USER_MUTATION_DOCUMENT = DocumentNode(definitions: [
       name: NameNode(value: 'CreateUser'),
       variableDefinitions: [
         VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'user')),
-            type: NamedTypeNode(
-                name: NameNode(value: 'CreateUserInput'), isNonNull: true),
+            variable: VariableNode(name: NameNode(value: 'languageCode')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
@@ -454,8 +413,8 @@ final CREATE_USER_MUTATION_DOCUMENT = DocumentNode(definitions: [
             alias: null,
             arguments: [
               ArgumentNode(
-                  name: NameNode(value: 'user'),
-                  value: VariableNode(name: NameNode(value: 'user')))
+                  name: NameNode(value: 'languageCode'),
+                  value: VariableNode(name: NameNode(value: 'languageCode')))
             ],
             directives: [],
             selectionSet: SelectionSetNode(selections: [

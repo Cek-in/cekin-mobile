@@ -20,13 +20,12 @@ class SignUpBloc {
   Future<String?> submit(
     String email,
     String password,
-    String fName,
   ) async {
     _isLoadingController.add(true);
     final res = await Auth.i.register(email, password);
     // If firebase user creation succeeded, create user in BE
     if (res.result == SignUpResults.success) {
-      final result = await GQLProvider.i.createUser(fName);
+      final result = await GQLProvider.i.createUser();
       _isLoadingController.add(false);
       if (result.result == GQLResults.success) {
         return null;

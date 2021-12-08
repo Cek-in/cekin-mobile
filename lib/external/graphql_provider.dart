@@ -34,23 +34,16 @@ class GQLProvider {
   }
 
   Future<ActionResult<GQLResults, CreateUser$Mutation$User?>> createUser(
-    fName,
   ) async {
     final res = await GQLProvider.i.client!.value.mutate(
       MutationOptions(
           document: CreateUserMutation(
             variables: CreateUserArguments(
-              user: CreateUserInput(
-                firstName: fName,
-                languageCode: Preferences.i.localePreference,
-              ),
+              languageCode: Preferences.i.getLocale(),
             ),
           ).document,
           variables: {
-            'user': {
-              'firstName': fName,
               'languageCode': Preferences.i.localePreference,
-            }
           }),
     );
     if (res.hasException) {

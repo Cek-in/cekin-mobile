@@ -1,5 +1,5 @@
-mutation CreateUser($user: CreateUserInput!) {
-    createUser(user: $user) {
+mutation CreateUser($languageCode: String!) {
+    createUser(languageCode: $languageCode) {
         id
     }
 }
