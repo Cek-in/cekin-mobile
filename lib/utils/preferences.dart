@@ -55,12 +55,15 @@ class Preferences {
   /// system theme is true, if so returns system there, if not returns light.
   CekInTheme getTheme() {
     String? theme = _sharedPreferences.getString(themePrefKey);
-    theme ??= useSystemTheme
-        ? SchedulerBinding.instance!.window.platformBrightness ==
-                Brightness.light
-            ? 'light'
-            : 'dark'
-        : 'light';
+    theme = 'light';
+    // TODO: When dart theme implemented, uncomment this section and remove
+    // hardcoded value above.
+    // theme ??= useSystemTheme
+    //     ? SchedulerBinding.instance!.window.platformBrightness ==
+    //             Brightness.light
+    //         ? 'light'
+    //         : 'dark'
+    //     : 'light';
     return CekInThemes.determineThemeFromString(theme);
   }
 
