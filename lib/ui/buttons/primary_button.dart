@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'leading_align.dart';
+
 class PrimaryButton extends StatelessWidget {
   final void Function()? onPressed;
   final LeadingAlign leadingAlign;
@@ -53,9 +55,4 @@ class PrimaryButton extends StatelessWidget {
       ],
     );
   }
-}
-
-enum LeadingAlign {
-  left,
-  right,
 }

@@ -16,4 +16,10 @@ mixin LoginStringsMixin {
   String get forgotPasswordButton;
 
   String get signUpButton;
+
+  String get btBack;
+
+  String get title;
+
+  String get subtitle;
 }

@@ -28,4 +28,13 @@ class LoginStringsCs with LoginStringsMixin {
 
   @override
   String get signUpButton => 'Registrovat';
+
+  @override
+  String get btBack => 'Zpět';
+
+  @override
+  String get subtitle => 'pomocí hesla a emailu';
+
+  @override
+  String get title => 'Přihlásit se';
 }

@@ -34,6 +34,13 @@ class CekInThemes {
           onError: Color(0xfff5ffef),
           brightness: Brightness.light,
         ),
+        textTheme: TextTheme(
+          headline3: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
       ),
       SystemUiOverlayStyle.light);
   static final darkTheme =

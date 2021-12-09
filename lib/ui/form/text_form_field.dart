@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/color_provider.dart';
 
 import '../../utils/validation/validators.dart';
 
@@ -41,7 +42,13 @@ class CekInTextFormField extends StatelessWidget {
       autofillHints: autofillHints,
       decoration: InputDecoration(
         label: label != null ? Text(label!) : null,
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+        ),
+        hintStyle: const TextStyle(fontStyle: FontStyle.italic),
         suffixIcon: suffix,
+        errorStyle: const TextStyle(fontStyle: FontStyle.italic),
       ),
     );
   }

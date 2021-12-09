@@ -1,0 +1,4 @@
+enum LeadingAlign {
+  left,
+  right,
+}

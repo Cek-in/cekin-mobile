@@ -27,4 +27,13 @@ class LoginStringsEn with LoginStringsMixin {
 
   @override
   String get signUpButton => 'Sign up';
+
+  @override
+  String get btBack => 'Back';
+
+  @override
+  String get subtitle => 'with email and password';
+
+  @override
+  String get title => 'Log in';
 }

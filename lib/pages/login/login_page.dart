@@ -1,4 +1,6 @@
+import 'package:cek_in/utils/color_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../strings/strings_provider.dart';
 import '../../ui/app_bar.dart';
@@ -66,19 +68,57 @@ class _LoginPageState extends State<LoginPage> {
             key: formKey,
             child: Column(
               children: [
+                buildHeader(),
+                Spacer(flex: 1),
+                buildGraphics(),
+                Spacer(flex: 2),
+                buildTexts(),
+                Spacer(flex: 1),
                 buildEmailField(),
+                SizedBox(height: 10),
                 buildPasswordField(),
                 buildForgotPassword(),
                 SizedBox(height: 20),
                 buildSubmit(),
                 SizedBox(height: 5),
-                buildSignUp(),
+                Spacer(flex: 2),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget buildHeader() {
+    return SafeArea(
+      child: IntrinsicHeight(
+        child: Stack(
+          children: [
+            Align(
+              child: SvgPicture.asset(
+                'assets/images/cekin_logo_transparent.svg',
+                color: context.colors.primary,
+                width: MediaQuery.of(context).size.width / 8,
+              ),
+            ),
+            if (Navigator.canPop(context))
+              Positioned(
+                left: 0,
+                child: PlainButton(
+                  label: s.btBack,
+                  onPressed: () => Navigator.pop(context),
+                  leading: Icon(Icons.chevron_left),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildGraphics() {
+    return SvgPicture.asset('assets/images/login_page.svg');
   }
 
   Widget buildEmailField() {
@@ -124,21 +164,25 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget buildForgotPassword() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: PlainButton(
-        onPressed: () {},
-        label: s.forgotPasswordButton,
-      ),
+    return PlainButton(
+      onPressed: () {},
+      label: s.forgotPasswordButton,
     );
   }
 
-  Widget buildSignUp() {
-    return PlainButton(
-      onPressed: () {
-        Navigator.of(context).pushNamed(Routes.signUp);
-      },
-      label: s.signUpButton,
+  Widget buildTexts() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          s.title,
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        Text(
+          s.subtitle,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ],
     );
   }
 
