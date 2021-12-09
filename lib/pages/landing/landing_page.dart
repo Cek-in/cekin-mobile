@@ -100,6 +100,19 @@ class LandingPage extends StatelessWidget {
             width: 25,
           ),
         ),
+        SizedBox(height: 20),
+        Text(s.alreadyRegistered),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, Routes.login);
+          },
+          child: Text(s.btLogIn),
+          style: TextButton.styleFrom(
+            minimumSize: Size.zero,
+            padding: EdgeInsets.all(4),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+        )
       ],
     );
   }

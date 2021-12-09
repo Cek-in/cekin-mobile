@@ -52,9 +52,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CekInAppBar.get(
-        title: Text(s.appBarTitle),
-      ),
       body: buildBody(),
     );
   }

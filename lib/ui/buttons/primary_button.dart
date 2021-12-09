@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
   final void Function()? onPressed;
+  final LeadingAlign leadingAlign;
   final Widget? leading;
   final String text;
 
   const PrimaryButton({
     Key? key,
     required this.text,
+    this.leadingAlign = LeadingAlign.left,
     this.onPressed,
     this.leading,
   }) : super(key: key);
@@ -31,9 +33,8 @@ class PrimaryButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (leading != null) ...[
+                if (leading != null && leadingAlign == LeadingAlign.left)
                   leading!,
-                ],
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -43,7 +44,8 @@ class PrimaryButton extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (leading != null) SizedBox(width: 15),
+                if (leading != null && leadingAlign == LeadingAlign.right)
+                  leading!,
               ],
             ),
           ),
@@ -51,4 +53,9 @@ class PrimaryButton extends StatelessWidget {
       ],
     );
   }
+}
+
+enum LeadingAlign {
+  left,
+  right,
 }

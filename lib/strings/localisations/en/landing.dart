@@ -1,4 +1,4 @@
-import 'package:cek_in/strings/abstracts/landing.dart';
+import '../../abstracts/landing.dart';
 
 class LandingPageStringsEn with LandingStringsMixin {
   @override
@@ -12,5 +12,11 @@ class LandingPageStringsEn with LandingStringsMixin {
       'By registering you agree to our Terms of Services and Privacy Policy';
 
   @override
-  String get title => 'ček-in';
+  String get title => 'čekin';
+
+  @override
+  String get alreadyRegistered => 'Alredy have an account?';
+
+  @override
+  String get btLogIn => 'Log in';
 }

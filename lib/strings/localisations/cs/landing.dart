@@ -12,5 +12,11 @@ class LandingPageStringsCs with LandingStringsMixin {
       'užívání a zásady ochrany osobních údajů';
 
   @override
-  String get title => 'ček-in';
+  String get title => 'čekin';
+
+  @override
+  String get alreadyRegistered => 'Již máte účet?';
+
+  @override
+  String get btLogIn => 'Přihlášení';
 }
