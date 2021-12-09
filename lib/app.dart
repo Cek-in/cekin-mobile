@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: StringsProvider.i.strings.general.appName,
         onGenerateRoute: AppRouter.i.onGenerateRoute,
-        initialRoute: userSignedIn ? Routes.init : Routes.login,
+        initialRoute: userSignedIn ? Routes.init : Routes.landing,
         locale: Locale(Preferences.i.localePreference),
         navigatorKey: AppRouter.i.key,
         debugShowCheckedModeBanner: false,

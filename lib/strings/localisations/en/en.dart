@@ -1,5 +1,7 @@
 import 'package:cek_in/strings/abstracts/check_in_details.dart';
+import 'package:cek_in/strings/abstracts/landing.dart';
 import 'package:cek_in/strings/localisations/en/check_in_details.dart';
+import 'package:cek_in/strings/localisations/en/landing.dart';
 
 import '../../abstracts/general.dart';
 import '../../abstracts/home.dart';
@@ -36,4 +38,7 @@ class StringsEn implements CekInStrings {
 
   @override
   CheckInDetailsStringsMixin get checkInDetails => CheckInDetailsStringsEn();
+
+  @override
+  LandingStringsMixin get landing => LandingPageStringsEn();
 }

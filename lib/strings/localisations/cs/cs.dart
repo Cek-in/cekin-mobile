@@ -1,6 +1,7 @@
-import 'package:cek_in/strings/abstracts/check_in_details.dart';
-import 'package:cek_in/strings/localisations/cs/check_in_details.dart';
-
+import '../../abstracts/check_in_details.dart';
+import '../../abstracts/landing.dart';
+import 'check_in_details.dart';
+import 'landing.dart';
 import '../../abstracts/general.dart';
 import '../../abstracts/home.dart';
 import '../../abstracts/login.dart';
@@ -36,4 +37,7 @@ class StringsCs implements CekInStrings {
 
   @override
   CheckInDetailsStringsMixin get checkInDetails => CheckInDetailsStringsCs();
+
+  @override
+  LandingStringsMixin get landing => LandingPageStringsCs();
 }

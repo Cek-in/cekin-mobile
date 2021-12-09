@@ -11,12 +11,7 @@ class CekInAppBar {
   }) {
     return AppBar(
       title: title,
-      leading: IconButton(
-        icon: Icon(Icons.logout),
-        onPressed: () {
-          Auth.i.logout();
-        },
-      ),
+      leading: leading,
       systemOverlayStyle: Preferences.i.selectedTheme.appBarOverlayStyle,
     );
   }

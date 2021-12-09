@@ -5,6 +5,7 @@ class Routes {
   static const String qrScan = '/qrScan';
   static const String forgotPassword = '/forgot_password';
   static const String signUp = '/sign_up';
-  static const String login = '/';
+  static const String landing = '/';
+  static const String login = '/login';
   static const String checkInDetails = '/check_in_details';
 }

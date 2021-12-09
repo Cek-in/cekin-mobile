@@ -25,6 +25,8 @@ class AppRouter {
         return route(Pages.checkInDetailsPage(settings.arguments as CheckIn));
       case Routes.signUp:
         return route(Pages.signUpPage());
+      case Routes.landing:
+        return route(Pages.landingPage());
       case Routes.forgotPassword:
         return route(Pages.forgotPasswordPage());
       case Routes.qrScan:

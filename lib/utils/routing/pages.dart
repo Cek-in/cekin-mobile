@@ -1,3 +1,4 @@
+import '../../pages/landing/landing_page.dart';
 import '../../pages/check_in_details/check_in_details_bloc.dart';
 import '../../pages/check_in_details/check_in_details_page.dart';
 import '../../pages/home/home_bloc.dart';
@@ -46,5 +47,9 @@ class Pages {
 
   static forgotPasswordPage() {
     return ForgotPasswordPage();
+  }
+
+  static landingPage() {
+    return LandingPage();
   }
 }
