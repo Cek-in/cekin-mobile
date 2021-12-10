@@ -12,6 +12,7 @@ class Preferences {
   static const localePrefKey = 'cekInLocale';
   static const themePrefKey = 'cekInTheme';
   static const useSystemThemePrefKey = 'useSystemThemePrefKey';
+  static const wasSignedInPrefKey = 'cekInWasSignedIn';
 
   late SharedPreferences _sharedPreferences;
 
@@ -21,6 +22,8 @@ class Preferences {
 
   late bool useSystemTheme = true;
 
+  late bool wasSignedIn = false;
+
   Preferences._();
 
   Future<void> init() async {
@@ -29,11 +32,22 @@ class Preferences {
     localePreference = getLocale();
     useSystemTheme = getUseSystemTheme();
     selectedTheme = getTheme();
+    wasSignedIn = getWasSignedIn();
   }
 
   String getLocale() {
     String? locale = _sharedPreferences.getString(localePrefKey);
     return locale ?? Platform.localeName.substring(0, 2);
+  }
+
+  bool getWasSignedIn() {
+    bool? wasSignedIn = _sharedPreferences.getBool(wasSignedInPrefKey);
+    return wasSignedIn ?? false;
+  }
+
+  Future<void> setWasSignedIn({bool value = true}) async {
+    await _sharedPreferences.setBool(wasSignedInPrefKey, value);
+    wasSignedIn = true;
   }
 
   Future<void> setLocale(String locale) async {

@@ -1,4 +1,5 @@
 import 'package:cek_in/utils/color_provider.dart';
+import 'package:cek_in/utils/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -206,6 +207,7 @@ class _LoginPageState extends State<LoginPage> {
     if (formKey.currentState!.validate()) {
       final res = await widget.bloc.submit(email, password);
       if (res == null) {
+        await Preferences.i.setWasSignedIn();
         await Navigator.of(context).pushReplacementNamed(Routes.init);
         return;
       }

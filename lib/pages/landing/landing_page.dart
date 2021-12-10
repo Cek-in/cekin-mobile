@@ -1,5 +1,7 @@
-import 'package:cek_in/strings/strings_provider.dart';
+import 'package:cek_in/utils/preferences.dart';
+import 'package:cek_in/utils/routing/router.dart';
 
+import '../../strings/strings_provider.dart';
 import 'background_painter.dart';
 import '../../utils/color_provider.dart';
 import '../../ui/buttons/primary_button.dart';
@@ -9,7 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LandingPage extends StatelessWidget {
-  LandingPage({Key? key}) : super(key: key);
+  LandingPage({Key? key}) : super(key: key) {
+    // If user was already signed in, skip the sign up offer landing page.
+    if (Preferences.i.wasSignedIn) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        AppRouter.i.key.currentState!.pushNamed(Routes.login);
+      });
+    }
+  }
 
   final s = StringsProvider.i.strings.landing;
 
