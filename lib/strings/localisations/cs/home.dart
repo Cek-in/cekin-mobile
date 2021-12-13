@@ -62,4 +62,10 @@ class HomeStringsCs with HomeStringsMixin {
 
   @override
   String get logoutQuestion => 'Odhlásit?';
+
+  @override
+  String get checkedInDate => 'Datum čekinu';
+
+  @override
+  String get checkedInTime => 'Čas čekinu';
 }

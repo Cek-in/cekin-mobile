@@ -1,3 +1,5 @@
+import '../../ui/vertical_divider.dart';
+import '../../utils/context_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -5,7 +7,6 @@ import 'package:grouped_list/grouped_list.dart';
 import '../../external/graphql_api.dart';
 import '../../strings/strings_provider.dart';
 import '../../ui/card.dart';
-import '../../ui/divider.dart';
 import '../../utils/date_formatter.dart';
 import '../../utils/int_extension.dart';
 import '../../utils/logger.dart';
@@ -70,24 +71,12 @@ class CheckIns extends StatelessWidget {
           groupComparator: _bloc.checkInGroupComparator,
           itemComparator: _bloc.chekInItemComparator,
           groupHeaderBuilder: (CheckIn checkIn) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CekInDivider(
-                  padding: EdgeInsets.only(bottom: 4),
-                ),
-                Text(
-                  DateFormatter.toSimpleDate(checkIn.checkInTime.toDateTime),
-                  style: Theme.of(context).textTheme.subtitle2,
-                ),
-                SizedBox(height: 4),
-              ],
-            );
+            return SizedBox(height: 10);
           },
           itemBuilder: (context, CheckIn checkIn) {
             return Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 23.0, vertical: 13),
                 child: _buildCheckInCard(checkIn, context));
           },
           groupBy: _bloc.checkInGrouper,
@@ -135,17 +124,46 @@ class CheckIns extends StatelessWidget {
 
   Widget _buildCheckInCard(CheckIn checkIn, BuildContext context) {
     return CekInCard(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
+      child: IntrinsicHeight(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              checkIn.place.name,
-              style: Theme.of(context).textTheme.headline6,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(13),
+                color: context.colors.primary,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Icon(
+                  Icons.login,
+                  size: context.mediaQuery.size.width / 6,
+                  color: context.colors.onPrimary,
+                ),
+              ),
             ),
-            Text(
-              DateFormatter.toSimpleHourMinute(checkIn.checkInTime.toDateTime),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: CekInVerticalDivider(),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    checkIn.place.name,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                  Text(
+                    '${s.checkedInDate}: ${DateFormatter.toSimpleDate(checkIn.checkInTime.toDateTime)}',
+                    style: context.textTheme.caption,
+                  ),
+                  Text(
+                    '${s.checkedInTime}: ${DateFormatter.toSimpleHourMinute(checkIn.checkInTime.toDateTime)}',
+                    style: context.textTheme.caption,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -63,4 +63,10 @@ class HomeStringsEn with HomeStringsMixin {
 
   @override
   String get logoutQuestion => 'Logout?';
+
+  @override
+  String get checkedInDate => 'Check in date';
+
+  @override
+  String get checkedInTime => 'Check in time';
 }

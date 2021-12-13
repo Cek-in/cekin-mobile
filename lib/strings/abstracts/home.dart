@@ -36,4 +36,8 @@ mixin HomeStringsMixin {
   String get btCancelLogout;
 
   String get btConfirmLogin;
+
+  String get checkedInDate;
+
+  String get checkedInTime;
 }

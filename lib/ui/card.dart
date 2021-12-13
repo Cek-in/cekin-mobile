@@ -20,7 +20,6 @@ class CekInCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(radius),
-        border: Border.all(color: Colors.white),
         boxShadow: shadow
             ? [
                 BoxShadow(

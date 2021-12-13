@@ -28,7 +28,7 @@ class _IndicatorPainter extends BoxPainter {
           offset.dx + cfg.size!.width / 9,
           cfg.size!.height / 1.3,
           cfg.size!.width - 2 * (cfg.size!.width / 9),
-          cfg.size!.height / 8,
+          cfg.size!.height / 13,
         ),
         Radius.circular(5));
     canvas.drawRRect(rrect, _paint);
