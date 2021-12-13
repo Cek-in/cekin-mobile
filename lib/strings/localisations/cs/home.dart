@@ -42,11 +42,11 @@ class HomeStringsCs with HomeStringsMixin {
   String get checkInDialogSuccessTitle => 'Úspěch';
 
   @override
-  String get getCheckInsFailMessage => 'Omlouváme se,\nnepodařilo se nám '
+  String get getCheckInsFailTitle => 'Omlouváme se,\nnepodařilo se nám '
       'načíst vaše záznamy.\nZkuste to prosím později.';
 
   @override
-  String get getCheckInsFailTitle => 'Detaily:';
+  String get getCheckInsFailMessage => 'Detaily:';
 
   @override
   String get getCheckInsFailNoCodeGiven => 'Žádný chybový kód';
@@ -68,4 +68,8 @@ class HomeStringsCs with HomeStringsMixin {
 
   @override
   String get checkedInTime => 'Čas čekinu';
+
+  @override
+  String get connectionFailureMessage =>
+      'Problém se spojením,,/nzkotrolujte připojení k internetu.';
 }

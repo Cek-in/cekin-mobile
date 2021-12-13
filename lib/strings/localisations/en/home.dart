@@ -43,11 +43,11 @@ class HomeStringsEn with HomeStringsMixin {
   String get checkInDialogSuccessTitle => 'Success';
 
   @override
-  String get getCheckInsFailMessage => 'We are sorry,\nwe could not fetch '
+  String get getCheckInsFailTitle => 'We are sorry,\nwe could not fetch '
       'your records.\nPlease, try again later.';
 
   @override
-  String get getCheckInsFailTitle => 'Details:';
+  String get getCheckInsFailMessage => 'Details:';
 
   @override
   String get getCheckInsFailNoCodeGiven => 'No error code';
@@ -69,4 +69,7 @@ class HomeStringsEn with HomeStringsMixin {
 
   @override
   String get checkedInTime => 'Check in time';
+
+  @override
+  String get connectionFailureMessage => 'Connection error,/ncheck your internet connection and try again.';
 }

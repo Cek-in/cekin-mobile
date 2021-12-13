@@ -40,4 +40,6 @@ mixin HomeStringsMixin {
   String get checkedInDate;
 
   String get checkedInTime;
+
+  String get connectionFailureMessage;
 }

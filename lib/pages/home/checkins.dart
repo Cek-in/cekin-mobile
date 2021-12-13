@@ -40,6 +40,9 @@ class CheckIns extends StatelessWidget {
         _bloc.refetchCallback = refetch;
         if (result.hasException) {
           Log.i.error(result.exception.toString());
+          if (result.exception!.linkException != null) {
+            return _buildNoConnectionMessage(context);
+          }
           return _buildErrorMessage(result.exception, context);
         }
         return Column(
@@ -92,32 +95,36 @@ class CheckIns extends StatelessWidget {
     OperationException? exception,
     BuildContext context,
   ) {
-    return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            s.getCheckInsFailTitle,
-            style: Theme.of(context).textTheme.headline5,
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          if (exception != null)
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: exception.graphqlErrors.length,
-                itemBuilder: (context, i) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(exception.graphqlErrors[i].extensions?['code'] ??
-                          s.getCheckInsFailNoCodeGiven),
-                      Text(exception.graphqlErrors[i].message),
-                    ],
-                  );
-                })
-        ],
+    return CekInCard(
+      shadow: true,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              s.getCheckInsFailTitle,
+              style: context.textTheme.subtitle1,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            if (exception != null)
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: exception.graphqlErrors.length,
+                  itemBuilder: (context, i) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(exception.graphqlErrors[i].extensions?['code'] ??
+                            s.getCheckInsFailNoCodeGiven),
+                        Text(exception.graphqlErrors[i].message),
+                      ],
+                    );
+                  })
+          ],
+        ),
       ),
     );
   }
@@ -172,6 +179,17 @@ class CheckIns extends StatelessWidget {
         Navigator.of(context)
             .pushNamed(Routes.checkInDetails, arguments: checkIn);
       },
+    );
+  }
+
+  Widget _buildNoConnectionMessage(BuildContext context) {
+    return CekInCard(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(s.connectionFailureMessage),
+        ],
+      ),
     );
   }
 }
