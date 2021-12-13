@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../utils/color_provider.dart';
+import '../../utils/context_provider.dart';
 
 import '../../utils/validation/validators.dart';
 

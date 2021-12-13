@@ -16,8 +16,12 @@ import 'home_bloc.dart';
 class CheckIns extends StatelessWidget {
   final HomePageBloc _bloc;
   final s = StringsProvider.i.strings.home;
+  final DateTime start;
+  final DateTime end;
   CheckIns(
     this._bloc, {
+    required this.start,
+    required this.end,
     Key? key,
   }) : super(key: key);
 
@@ -55,35 +59,39 @@ class CheckIns extends StatelessWidget {
     final checkIns = _bloc.parseData(data);
     if (checkIns.result == CheckInParseResults.success &&
         checkIns.value != null) {
-      return GroupedListView(
-        padding: EdgeInsets.zero,
-        shrinkWrap: true,
-        elements: checkIns.value!,
-        order: GroupedListOrder.DESC,
-        groupComparator: _bloc.checkInGroupComparator,
-        itemComparator: _bloc.chekInItemComparator,
-        groupHeaderBuilder: (CheckIn checkIn) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CekInDivider(
-                padding: EdgeInsets.only(bottom: 4),
-              ),
-              Text(
-                DateFormatter.toSimpleDate(checkIn.checkInTime.toDateTime),
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-              SizedBox(height: 4),
-            ],
-          );
-        },
-        itemBuilder: (context, CheckIn checkIn) {
-          return Padding(
-              padding: const EdgeInsets.only(bottom: 12.0),
-              child: _buildCheckInCard(checkIn, context));
-        },
-        groupBy: _bloc.checkInGrouper,
+      return Flexible(
+        child: GroupedListView(
+          padding: EdgeInsets.zero,
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          shrinkWrap: true,
+          elements: checkIns.value!,
+          order: GroupedListOrder.DESC,
+          groupComparator: _bloc.checkInGroupComparator,
+          itemComparator: _bloc.chekInItemComparator,
+          groupHeaderBuilder: (CheckIn checkIn) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CekInDivider(
+                  padding: EdgeInsets.only(bottom: 4),
+                ),
+                Text(
+                  DateFormatter.toSimpleDate(checkIn.checkInTime.toDateTime),
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+                SizedBox(height: 4),
+              ],
+            );
+          },
+          itemBuilder: (context, CheckIn checkIn) {
+            return Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: _buildCheckInCard(checkIn, context));
+          },
+          groupBy: _bloc.checkInGrouper,
+        ),
       );
     }
 
@@ -132,12 +140,9 @@ class CheckIns extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Hero(
-              tag: checkIn.id,
-              child: Text(
-                checkIn.place.name,
-                style: Theme.of(context).textTheme.headline6,
-              ),
+            Text(
+              checkIn.place.name,
+              style: Theme.of(context).textTheme.headline6,
             ),
             Text(
               DateFormatter.toSimpleHourMinute(checkIn.checkInTime.toDateTime),

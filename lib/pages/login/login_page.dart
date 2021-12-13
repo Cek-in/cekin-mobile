@@ -1,4 +1,4 @@
-import 'package:cek_in/utils/color_provider.dart';
+import 'package:cek_in/utils/context_provider.dart';
 import 'package:cek_in/utils/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

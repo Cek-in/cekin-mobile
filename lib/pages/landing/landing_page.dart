@@ -3,7 +3,7 @@ import 'package:cek_in/utils/routing/router.dart';
 
 import '../../strings/strings_provider.dart';
 import 'background_painter.dart';
-import '../../utils/color_provider.dart';
+import '../../utils/context_provider.dart';
 import '../../ui/buttons/primary_button.dart';
 import '../../ui/flexible_view.dart';
 import '../../utils/routing/routes.dart';

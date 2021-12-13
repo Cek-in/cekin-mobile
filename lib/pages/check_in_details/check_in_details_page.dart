@@ -49,16 +49,13 @@ class _CheckInDetailsPageState extends State<CheckInDetailsPage> {
     return [
       CekInSliverAppBar(
         title: s.title,
-        expandedSpace: Hero(
-          child: Center(
-            child: Text(
-              widget._bloc.checkIn.place.name,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-            ),
+        expandedSpace: Center(
+          child: Text(
+            widget._bloc.checkIn.place.name,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
           ),
-          tag: widget._bloc.checkIn.id,
         ),
       )
     ];

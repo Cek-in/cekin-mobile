@@ -31,23 +31,17 @@ class CekInSliverAppBar extends StatelessWidget {
         collapseMode: CollapseMode.pin,
         centerTitle: true,
         title: title != null
-            ? Text(
-                title!,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-              )
+            ? Text(title!, style: Theme.of(context).textTheme.headline5)
             : null,
         background: expandedSpace,
+        titlePadding: EdgeInsets.only(bottom: 15),
       ),
       actions: actions,
-      expandedHeight: 180,
+      expandedHeight: 150,
       leading: leading ??
           (Navigator.of(context).canPop() ? const GoBackButton() : null),
       centerTitle: true,
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      elevation: 5,
-      forceElevated: true,
+      backgroundColor: Theme.of(context).colorScheme.background,
       pinned: pinned,
     );
   }

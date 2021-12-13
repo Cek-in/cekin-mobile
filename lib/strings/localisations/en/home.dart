@@ -53,7 +53,7 @@ class HomeStringsEn with HomeStringsMixin {
   String get getCheckInsFailNoCodeGiven => 'No error code';
 
   @override
-  String get title => 'Home';
+  String get title => 'My čekins';
 
   @override
   String get btCancelLogout => 'No';

@@ -25,7 +25,7 @@ class CekInThemes {
           secondary: Color(0xfff5ffef),
           secondaryVariant: Color(0xfff5ffef),
           surface: Color(0xff70c041),
-          background: Color(0xfff5ffef),
+          background: Color(0xffffffff),
           error: Colors.red,
           onPrimary: Color(0xfff5ffef),
           onSecondary: Color(0xff70c041),
@@ -40,6 +40,11 @@ class CekInThemes {
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
+          headline5: TextStyle(
+            fontWeight: FontWeight.w900,
+            color: Colors.black,
+          ),
+          subtitle1: TextStyle(fontWeight: FontWeight.w900),
         ),
       ),
       SystemUiOverlayStyle.light);

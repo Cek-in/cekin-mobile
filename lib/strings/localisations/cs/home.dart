@@ -52,7 +52,7 @@ class HomeStringsCs with HomeStringsMixin {
   String get getCheckInsFailNoCodeGiven => 'Žádný chybový kód';
 
   @override
-  String get title => 'Domů';
+  String get title => 'Moje čekiny';
 
   @override
   String get btCancelLogout => 'Ne';
