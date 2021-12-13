@@ -43,11 +43,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       //   ),
       // ),
 
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: onScanTapped,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/icon/Icon.png'),
+        backgroundColor: context.colors.primary,
+        label: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 30),
+          child: Icon(
+            Icons.camera_alt_rounded,
+            color: context.colors.onPrimary,
+          ),
         ),
       ),
     );
