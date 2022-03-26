@@ -37,7 +37,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.0
   artemis: ^7.2.6-beta
   build_runner: ^2.1.5
 
